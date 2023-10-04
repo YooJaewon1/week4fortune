@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>오늘의 포춘쿠키</title>
+	<link href="https://webfontworld.github.io/BMJua/BMJua.css" rel="stylesheet">
+
+	<style type="text/css">
+		@font-face {
+    	font-family: 'TmoneyRoundWindExtraBold';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;}
+    	body{background-image: url('background.jpg');
+    		background-size: cover;
+    		}
+		h1, h2{margin:0; padding:0; align-content: auto; text-align: center;}
+		h1{font-family: 'TmoneyRoundWindExtraBold';
+			font-size: 2rem;
+			color: #ab793e;
+			letter-spacing: -0.1rem}
+		h2{font-family: 'TmoneyRoundWindExtraBold'; font-weight: 400; font-size: 1rem; 
+			padding-top: 5px;
+			color: #cab28e}
+		.top{padding-top: 20px}
+		.myDate{margin:0; align-content: auto; text-align: center;
+			font-family: 'TmoneyRoundWindExtraBold';
+			font-size: 2.8rem;
+			padding: 20px;
+			color: #805727;
+			letter-spacing: -0.1rem}
+
+		.middle{width: 900px; height: 500px;
+			align-content: auto;
+			text-align: center; margin:0 auto; padding:0;
+			background-image: url('back.png');
+			background-repeat: no-repeat;
+			background-size: cover; }
+		.inside{width: 800px; height:400px; background-color: ;  align-content: auto;
+			text-align: center; margin:0 auto; 
+			padding-top: 50px}
+
+		.timer {position: absolute;
+		  top: 30px;
+		  font-size: 24px;
+		  font-size: 5rem; 
+		 	color: #805727;
+		 	font-family: 'TmoneyRoundWindExtraBold'}
+
+		 .timermessage{font-size: 5rem; 
+		 	color: white;font-family: 'TmoneyRoundWindExtraBold';
+		 	position: absolute; top: 58%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+		 	background-color: ;
+		 	letter-spacing: -0.2rem;
+		 	}
+	</style>
+</head>
+
+<body>
+	<div class ="top">
+		<h1> 클릭으로 알아보는 운세 </h1>
+		<div class ="myDate"></div>
+	</div>
+	<script type="text/javascript">
+		makeDate();
+
+		function makeDate(){
+			var d = new Date();
+			var month = d.getMonth() +1;
+			var yoil = d.getDay();
+			var day = d.getDate();
+
+			var output = "" + month + "월 " + day + "일 " + yoiltrans(yoil) + "의 포춘쿠키";
+		var myDateDiv = document.querySelector(".myDate");
+		myDateDiv.innerHTML = output;
+		}
+
+		function yoiltrans(num){
+			var num2;
+			if(num == "1"){ num2 == "월"}
+			else if(num == "2") { num2 = "화"}
+			else if(num == "3") { num2 = "수"}
+			else if(num == "4") { num2 = "목"}
+			else if(num == "5") { num2 = "금"}
+			else if(num == "6") { num2 = "토"}
+			else if(num == "7") { num2 = "일"}
+			return num2 + "요일";
+		}
+	</script>
+<div id="timermessage" class="timermessage"></div>
+	<div class ="middle">
+		<div id="timer" class="timer">30</div>
+ 		 
+		<div class = "inside" id="plate"></div>
+	</div>
+	<script type="text/javascript">
+  var timerElement = document.getElementById('timer');
+  var messageElement = document.getElementById('timermessage');
+  var timeLeft = 30;
+
+  var countdownInterval = setInterval(function() {
+    timeLeft--;
+    timerElement.innerText = timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(countdownInterval);
+      messageElement.innerText = "다 먹어버렸습니다!";
+          hideImages();
+          playSound3();
+    }
+  }, 1000);
+
+  function hideImages() {
+    var images = document.querySelectorAll('.imgpng');
+    for (var i = 0; i < images.length; i++) {
+      images[i].style.display = 'none';
+    }
+   }
+   function playSound3(){
+   	var sound = new Audio('sound3.mp3');
+   	sound.play();
+   }
+</script>
+
+	<script type="text/javascript">
+
+	var a = ["1", "2", "3", "4"];
+	var sounds = [new Audio('sound1.mp3'),
+				new Audio('sound2.mp3')]
+	var currentSound = null;
+
+	var messages =  [
+		"책임감이 강해 부담을 느끼겠지만 주변의 신뢰를 받고 있습니다. 다른 방면에서 보답이 올 겁니다.",
+		"고민하는 것은 시간낭비가 아니라 문제 해결의 완성도를 높입니다. 단 너무 길어지면 해가됩니다.",
+		"꽝",
+		"일이 잘 풀리지 않아도 실망하지 마세요. 오히려 기회가 될 수 있습니다.",
+		"모든 결과에는 원인이 있습니다. 주변의 관계를 돌아보세요.",
+		"오늘 할 일을 내일로 미루면 내일의 부담은 2배가 아닌 제곱이 됩니다.",
+		"과거로 돌아간다면 기억해두세요. 21 26 27 32 34 42",
+		"안되면 되는 거 해라!"];
+
+	function handleClick(event) {
+
+		 if (currentSound !== null) {
+      currentSound.pause();
+      currentSound.currentTime = 0;
+    }
+		 event.target.src = 'after.png';
+		 playRandomSound();
+
+		
+      var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    alert(randomMessage);
+     event.target.removeEventListener('click', handleClick);
+  }
+
+	for(var i=0; i<8; i++){
+		var t = document.createElement("img");
+		t.src = a[randomBH(0,3)] + ".png";
+		t.className = "imgpng";
+		t.style.width = randomBH(160, 200)+"px";
+		t.style.height = "auto";
+		t.style.left = Math.random()*screen.availWidth +"px";
+		t.style.top = Math.random()*screen.availHeight +"px";
+
+		t.addEventListener('click', handleClick);
+
+		document.getElementById("plate").appendChild(t);
+	}
+
+	function randomBH(min, max) {
+  		min = Math.ceil(min);
+  		max = Math.floor(max);
+  		return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+	function playRandomSound(){
+		var randomIndex = Math.floor(Math.random()*sounds.length);
+		currentSound = sounds[randomIndex]; // 현재 사운드 업데이트
+		currentSound.play();
+	}
+
+	</script>
+
+</body>
+</html>
